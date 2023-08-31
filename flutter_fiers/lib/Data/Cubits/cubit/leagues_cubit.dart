@@ -9,11 +9,11 @@ class LeaguesCubit extends Cubit<LeaguesState> {
   LeaguesCubit() : super(LeaguesInitial());
 
   LeaguesRepo Getleagues =LeaguesRepo();
-  leagues() async {
+  leagues(int id) async {
     emit(Loading());
 
     try {
-      await Getleagues.leagues().then((value) {
+      await Getleagues.leagues(id).then((value) {
         if (value != null) {
           emit(Success(response : value));
         } else {

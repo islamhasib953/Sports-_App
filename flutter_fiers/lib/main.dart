@@ -58,10 +58,7 @@ class MyApp extends StatelessWidget {
                 seedColor: Color.fromRGBO(101, 158, 199, 1)),
             useMaterial3: true,
           ),
-          home: TeamsScoresScreen(
-            id: 17,
-            name: "pp",
-          ),
+          home: splashscreen( ),
         ),
       ),
     );

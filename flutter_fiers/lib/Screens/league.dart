@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiers/Data/Cubits/cubit/leagues_cubit.dart';
+import 'package:flutter_fiers/Screens/teams.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+
 class LeagueScreen extends StatelessWidget {
-  const LeagueScreen({super.key});
+  final int idleague;
+  
+  const LeagueScreen({super.key, required this.idleague});
   double getResponsiveHeight(double percentage, BuildContext context) {
     return MediaQuery.of(context).size.height * percentage;
   }
@@ -12,9 +16,10 @@ class LeagueScreen extends StatelessWidget {
   double getResponsiveWidth(double percentage, BuildContext context) {
     return MediaQuery.of(context).size.width * percentage;
   }
+
   @override
   Widget build(BuildContext context) {
-    context.read<LeaguesCubit>().leagues();
+    context.read<LeaguesCubit>().leagues(idleague);
     return OrientationBuilder(
       builder: (context, orientation) {
         if (orientation == Orientation.portrait) {
@@ -86,8 +91,18 @@ class LeagueScreen extends StatelessWidget {
                                     0.025, context)), // Responsive padding
                                 child: InkWell(
                                   onTap: () {
-                                    // Navigator.push(context,  MaterialPageRoute<void>(
-                                    // builder: (BuildContext context) =>  NextScreen(),),);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute<void>(
+                                        builder: (BuildContext context) =>
+                                            TeamsScoresScreen(
+                                          id: state
+                                              .response.result[i].leagueKey,
+                                          name: state
+                                              .response.result[i].leagueName,
+                                        ),
+                                      ),
+                                    );
                                   },
                                   child: Container(
                                     width: getResponsiveWidth(
@@ -241,8 +256,17 @@ class LeagueScreen extends StatelessWidget {
                                   0.025, context)), // Responsive padding
                               child: InkWell(
                                 onTap: () {
-                                  // Navigator.push(context,  MaterialPageRoute<void>(
-                                  // builder: (BuildContext context) =>  NextScreen(),),);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute<void>(
+                                      builder: (BuildContext context) =>
+                                          TeamsScoresScreen(
+                                              id: state.response.result[index]
+                                                  .leagueKey,
+                                              name: state.response.result[index]
+                                                  .leagueName,),
+                                    ),
+                                  );
                                 },
                                 child: Container(
                                   width: getResponsiveWidth(

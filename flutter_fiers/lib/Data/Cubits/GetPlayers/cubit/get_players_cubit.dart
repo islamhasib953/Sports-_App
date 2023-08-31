@@ -10,11 +10,11 @@ class GetPlayersCubit extends Cubit<GetPlayersState> {
 
   GetPlayersRepo playersRepo = GetPlayersRepo();
 
-  getPlayers() async {
+  getPlayers(int playerid) async {
     emit(GetPlayersLoading());
 
     try {
-      await playersRepo.getplayers().then((value) {
+      await playersRepo.getplayers(playerid).then((value) {
         if (value != null) {
           emit(GetPlayersSuccess(response: value));
         } else {
