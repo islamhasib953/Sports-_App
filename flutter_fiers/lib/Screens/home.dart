@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fiers/Screens/countries.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -31,8 +32,8 @@ class HomeScreen extends StatelessWidget {
     return InkWell(
       onTap: () {
         if (index == 0) {
-          // Navigator.push(context,  MaterialPageRoute<void>(
-          // builder: (BuildContext context) =>  CountriesScreen(),),);
+           Navigator.push(context,  MaterialPageRoute<void>(
+           builder: (BuildContext context) =>  CountriesScreen(),),);
         } else {
           showDialog(
             context: context,

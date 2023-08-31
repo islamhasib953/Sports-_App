@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiers/Data/Cubits/cubit/leagues_cubit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-
 class LeagueScreen extends StatelessWidget {
   const LeagueScreen({super.key});
   double getResponsiveHeight(double percentage, BuildContext context) {
@@ -13,7 +12,6 @@ class LeagueScreen extends StatelessWidget {
   double getResponsiveWidth(double percentage, BuildContext context) {
     return MediaQuery.of(context).size.width * percentage;
   }
-
   @override
   Widget build(BuildContext context) {
     context.read<LeaguesCubit>().leagues();

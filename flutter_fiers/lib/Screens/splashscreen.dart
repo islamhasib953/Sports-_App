@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_fiers/Screens/onboarding_screen.dart';
 class splashscreen extends StatefulWidget {
    splashscreen({super.key});
 
@@ -18,10 +19,10 @@ class _splashscreenState extends State<splashscreen> with SingleTickerProviderSt
 
     Timer(
       Duration(seconds: 2), () {
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => Onboardingsplashscreen()),
-      // );
+       Navigator.pushReplacement(
+         context,
+        MaterialPageRoute(builder: (context) =>PageSwapperWidget()),
+       );
     });
   }
 

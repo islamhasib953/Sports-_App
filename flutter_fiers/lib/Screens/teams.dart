@@ -11,8 +11,7 @@ final TextEditingController search = TextEditingController();
 class TeamsScoresScreen extends StatefulWidget {
   final int id;
   final String? name;
-  const TeamsScoresScreen(
-      {super.key, required this.id, required this.name});
+  const TeamsScoresScreen({super.key, required this.id, required this.name});
 
   @override
   State<TeamsScoresScreen> createState() => _TeamsScoresScreen();
@@ -70,7 +69,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
               "Select Team",
               style: GoogleFonts.nunito(
                   color: Colors.white,
-                  fontSize: 20.sp,
+                  fontSize: 20,
                   fontWeight: FontWeight.w500),
             )),
             bottom: PreferredSize(
