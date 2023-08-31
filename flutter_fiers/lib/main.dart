@@ -1,16 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-
+import 'package:flutter_fiers/Data/Cubits/GetPlayers/cubit/get_players_cubit.dart';
+import 'package:flutter_fiers/Data/Cubits/cubit/countries_cubit.dart';
+import 'package:flutter_fiers/Data/Cubits/cubit/leagues_cubit.dart';
+import 'package:flutter_fiers/Data/Cubits/teams_status_cubit/teams_scores_cubit.dart';
+import 'package:flutter_fiers/Screens/Players.dart';
+import 'package:flutter_fiers/Screens/countries.dart';
+import 'package:flutter_fiers/Screens/home.dart';
+import 'package:flutter_fiers/Screens/onboarding_screen.dart';
+import 'package:flutter_fiers/Screens/splashscreen.dart';
+import 'Screens/league.dart';
 void main() {
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<GetPlayersCubit>(
+          create: (BuildContext context) => GetPlayersCubit(),
+        ),
+        BlocProvider<CountriesCubit>(
+          create: (BuildContext context) => CountriesCubit(),
+        ),
+        BlocProvider<LeaguesCubit>(
+          create: (BuildContext context) => LeaguesCubit(),
+        ),
+                BlocProvider<TeamsScoresCubit>(
+          create: (BuildContext context) => TeamsScoresCubit(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          // This is the theme of your application.
+          //
+          // TRY THIS: Try running your application with "flutter run". You'll see
+          // the application has a blue toolbar. Then, without quitting the app,
+          // try changing the seedColor in the colorScheme below to Colors.green
+          // and then invoke "hot reload" (save your changes or press the "hot
+          // reload" button in a Flutter-supported IDE, or press "r" if you used
+          // the command line to start the app).
+          //
+          // Notice that the counter didn't reset back to zero; the application
+          // state is not lost during the reload. To reset the state, use hot
+          // restart instead.
+          //
+          // This works for code too, not just values: Most code changes can be
+          // tested with just a hot reload.
+          colorScheme:
+              ColorScheme.fromSeed(seedColor: Color.fromRGBO(101, 158, 199, 1)),
+          useMaterial3: true,
+        ),
+        home: Players(),
+      ),
+    );
   }
 }
 class MyHomePage extends StatefulWidget {

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-
 class splashscreen extends StatefulWidget {
    splashscreen({super.key});
 
@@ -52,7 +51,7 @@ class _splashscreenState extends State<splashscreen> with SingleTickerProviderSt
               child: ScaleTransition(
                 scale: _logocontroller,
                 child: Image.asset(
-                  "lib/Assets/images/Remove background project (6).png",
+                  "lib/Assets/Images/Remove background project (6).png",
                   height: splashscreenHeight * 0.2, // Responsive image height
                 ),
               ),

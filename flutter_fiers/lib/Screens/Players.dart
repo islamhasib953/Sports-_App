@@ -247,7 +247,7 @@ class Players extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Lottie.asset(
-                                'lib/Assets/images/animation_llw7fh94.json',
+                                'lib/Assets/Images/animation_llw7fh94.json',
                                 width: getResponsiveWidth(
                                     0.4, context), // Responsive width
                               ),
@@ -445,7 +445,7 @@ class Players extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Lottie.asset(
-                                'lib/Assets/images/animation_llw7fh94.json',
+                                'lib/Assets/Images/animation_llw7fh94.json',
                                 width: getResponsiveWidth(
                                     0.4, context), // Responsive width
                               ),

@@ -4,15 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-
   List names = ["FootBall", "BasketBall", "Cricket", "Tennis"];
   List images = [
-    "lib/Assets/images/Sports soccer.svg",
-    "lib/Assets/images/Sports basketball.svg",
-    "lib/Assets/images/Sports cricket.svg",
-    "lib/Assets/images/Sports tennis.svg"
+    "lib/Assets/Images/Sports soccer.svg",
+    "lib/Assets/Images/Sports basketball.svg",
+    "lib/Assets/Images/Sports cricket.svg",
+    "lib/Assets/Images/Sports tennis.svg"
   ];
-
   double getResponsiveHeight(double percentage, BuildContext context) {
     return MediaQuery.of(context).size.height * percentage;
   }
@@ -25,7 +23,6 @@ class HomeScreen extends StatelessWidget {
       BuildContext context, int index, Orientation orientation) {
     double widthRatio = 0.3; // Default width ratio for portrait
     double heightRatio = 0.3; // Default height ratio for portrait
-
     if (orientation == Orientation.landscape) {
       widthRatio = 0.16; // Width ratio for landscape
       heightRatio = 0.5; // Height ratio for landscape
@@ -69,7 +66,8 @@ class HomeScreen extends StatelessWidget {
             getResponsiveWidth(0.03, context)), // Responsive padding
         child: Container(
           width: getResponsiveWidth(widthRatio, context), // Responsive width
-          height: getResponsiveHeight(heightRatio, context), // Responsive height
+          height:
+              getResponsiveHeight(heightRatio, context), // Responsive height
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(getResponsiveWidth(
                 widthRatio / 2, context)), // Responsive radius
@@ -80,15 +78,18 @@ class HomeScreen extends StatelessWidget {
             children: [
               SvgPicture.asset(
                 images[index],
-                height: getResponsiveHeight(0.14, context), // Responsive SVG height
+                height:
+                    getResponsiveHeight(0.14, context), // Responsive SVG height
               ),
               SizedBox(
-                  height: getResponsiveHeight(0.02, context)), // Responsive spacing
+                  height:
+                      getResponsiveHeight(0.02, context)), // Responsive spacing
               Text(
                 names[index],
                 style: GoogleFonts.robotoSlab(
                     color: Color.fromRGBO(65, 98, 126, 1),
-                    fontSize: getResponsiveHeight( 0.03, context), // Responsive font size
+                    fontSize: getResponsiveHeight(
+                        0.03, context), // Responsive font size
                     fontWeight: FontWeight.w600),
               ),
             ],
@@ -97,7 +98,7 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,17 +122,19 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Container(
                   width: double.infinity,
-                  height: getResponsiveHeight( 0.1, context ), // Responsive app bar height
+                  height: getResponsiveHeight(
+                      0.1, context), // Responsive app bar height
                   decoration: BoxDecoration(
                     borderRadius:
                         BorderRadius.vertical(bottom: Radius.circular(15)),
-                        color: Color.fromRGBO(101, 158, 199, 1),
+                    color: Color.fromRGBO(101, 158, 199, 1),
                   ),
                   child: Center(
                     child: Text(
                       "Select your favorite sport",
                       style: GoogleFonts.robotoSlab(
-                          fontSize: getResponsiveHeight(0.03, context), // Responsive font size
+                          fontSize: getResponsiveHeight(
+                              0.03, context), // Responsive font size
                           color: Colors.white,
                           fontWeight: FontWeight.w600),
                     ),
