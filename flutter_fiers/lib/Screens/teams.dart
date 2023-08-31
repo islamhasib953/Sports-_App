@@ -1,17 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_fiers/Data/Cubits/teams_status_cubit/teams_scores_cubit.dart';
+import 'package:flutter_fiers/Screens/Players.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:test_sports_app/data/cubits/teams_status_cubit/teams_scores_cubit.dart'; //
 
 final TextEditingController search = TextEditingController();
 
 class TeamsScoresScreen extends StatefulWidget {
   final int id;
   final String? name;
-
   const TeamsScoresScreen({super.key, required this.id, required this.name});
 
   @override
@@ -70,7 +70,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
               "Select Team",
               style: GoogleFonts.nunito(
                   color: Colors.white,
-                  fontSize: 20.sp,
+                  fontSize: 20,
                   fontWeight: FontWeight.w500),
             )),
             bottom: PreferredSize(
@@ -180,7 +180,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                         ),
                                         hintText: 'Search',
                                         hintStyle: GoogleFonts.nunito(
-                                          fontSize: 16.sp,
+                                          fontSize: 16,
                                           color: const Color.fromARGB(
                                               255, 197, 194, 194),
                                         ),
@@ -188,7 +188,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                           icon: const Icon(Icons.search),
                                           color: const Color.fromARGB(
                                               255, 197, 194, 194),
-                                          iconSize: 25.sp,
+                                          iconSize: 25,
                                           onPressed: () {
                                             if (search.text != "") {
                                               context
@@ -233,16 +233,14 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                                     const EdgeInsets.all(5.0),
                                                 child: InkWell(
                                                   onTap: () {
-                                                    /*  searchPlayer.text = "";
+                                                     // searchPlayer.text = "";
                                                     Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
                                                         builder: (context) =>
-                                                            PlayersScreen(
-                                                          
-                                                        ),
+        Players(id:state.ourresponse.result![index].teamKey!,),
                                                       ),
-                                                    );*/
+                                                    );
                                                   },
                                                   child: Container(
                                                       decoration: BoxDecoration(

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiers/Data/Cubits/cubit/leagues_cubit.dart';
+import 'package:flutter_fiers/Screens/teams.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class LeagueScreen extends StatelessWidget {
-  const LeagueScreen({super.key});
-
+  final int idleague;
+  
+  const LeagueScreen({super.key, required this.idleague});
   double getResponsiveHeight(double percentage, BuildContext context) {
     return MediaQuery.of(context).size.height * percentage;
   }
@@ -17,8 +19,7 @@ class LeagueScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<LeaguesCubit>().leagues();
-
+    context.read<LeaguesCubit>().leagues(idleague);
     return OrientationBuilder(
       builder: (context, orientation) {
         if (orientation == Orientation.portrait) {
@@ -82,14 +83,26 @@ class LeagueScreen extends StatelessWidget {
                       } else if (state is Success) {
                         return Column(
                           children: [
-                            for (int i = 0; i < state.response.result.length; i++)
+                            for (int i = 0;
+                                i < state.response.result.length;
+                                i++)
                               Padding(
                                 padding: EdgeInsets.all(getResponsiveWidth(
                                     0.025, context)), // Responsive padding
                                 child: InkWell(
-                                  onTap: (){
-                                    // Navigator.push(context,  MaterialPageRoute<void>(
-                                   // builder: (BuildContext context) =>  NextScreen(),),);
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute<void>(
+                                        builder: (BuildContext context) =>
+                                            TeamsScoresScreen(
+                                          id: state
+                                              .response.result[i].leagueKey,
+                                          name: state
+                                              .response.result[i].leagueName,
+                                        ),
+                                      ),
+                                    );
                                   },
                                   child: Container(
                                     width: getResponsiveWidth(
@@ -98,19 +111,22 @@ class LeagueScreen extends StatelessWidget {
                                         0.15, context), // Responsive height
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
-                                          getResponsiveWidth(
-                                              0.3, context)), // Responsive radius
-                                      color: Color.fromRGBO(229, 236, 242, 0.70),
+                                          getResponsiveWidth(0.3,
+                                              context)), // Responsive radius
+                                      color:
+                                          Color.fromRGBO(229, 236, 242, 0.70),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(getResponsiveWidth(
-                                          0.025, context)), // Responsive padding
+                                      padding: EdgeInsets.all(
+                                          getResponsiveWidth(0.025,
+                                              context)), // Responsive padding
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
                                           CircleAvatar(
-                                            radius: getResponsiveWidth(
-                                                0.1, context), // Responsive radius
+                                            radius: getResponsiveWidth(0.1,
+                                                context), // Responsive radius
                                             backgroundImage: NetworkImage(
                                               state.response.result[i]
                                                       .leagueLogo ??
@@ -122,10 +138,12 @@ class LeagueScreen extends StatelessWidget {
                                                 context), // Responsive spacing
                                           ),
                                           Text(
-                                            state.response.result[i].leagueName ??
+                                            state.response.result[i]
+                                                    .leagueName ??
                                                 "Unknown",
                                             style: GoogleFonts.robotoSlab(
-                                                fontSize: getResponsiveHeight(0.02,
+                                                fontSize: getResponsiveHeight(
+                                                    0.02,
                                                     context), // Responsive font size
                                                 fontWeight: FontWeight.w600,
                                                 color: Color(0xff41627E)),
@@ -145,7 +163,7 @@ class LeagueScreen extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Lottie.asset(
-                                'lib/Assets/images/animation_llw7fh94.json',
+                                'lib/Assets/Images/animation_llw7fh94.json',
                                 width: getResponsiveWidth(
                                     0.4, context), // Responsive width
                               ),
@@ -223,7 +241,8 @@ class LeagueScreen extends StatelessWidget {
                         );
                       } else if (state is Success) {
                         return GridView.builder(
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 1,
                             childAspectRatio: getResponsiveWidth(0.8, context) /
                                 getResponsiveHeight(0.35, context),
@@ -236,10 +255,19 @@ class LeagueScreen extends StatelessWidget {
                               padding: EdgeInsets.all(getResponsiveWidth(
                                   0.025, context)), // Responsive padding
                               child: InkWell(
-                                onTap: (){
-                                    // Navigator.push(context,  MaterialPageRoute<void>(
-                                   // builder: (BuildContext context) =>  NextScreen(),),);
-                                  },
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute<void>(
+                                      builder: (BuildContext context) =>
+                                          TeamsScoresScreen(
+                                              id: state.response.result[index]
+                                                  .leagueKey,
+                                              name: state.response.result[index]
+                                                  .leagueName,),
+                                    ),
+                                  );
+                                },
                                 child: Container(
                                   width: getResponsiveWidth(
                                       0.9, context), // Responsive width
@@ -255,7 +283,8 @@ class LeagueScreen extends StatelessWidget {
                                     padding: EdgeInsets.all(getResponsiveWidth(
                                         0.025, context)), // Responsive padding
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         CircleAvatar(
                                           radius: 50, // Responsive radius
@@ -266,14 +295,16 @@ class LeagueScreen extends StatelessWidget {
                                           ),
                                         ),
                                         SizedBox(
-                                          width: getResponsiveWidth(
-                                              0.005, context), // Responsive spacing
+                                          width: getResponsiveWidth(0.005,
+                                              context), // Responsive spacing
                                         ),
                                         Text(
-                                          state.response.result[index].leagueName ??
+                                          state.response.result[index]
+                                                  .leagueName ??
                                               "Unknown",
                                           style: GoogleFonts.robotoSlab(
-                                              fontSize: getResponsiveHeight(0.05,
+                                              fontSize: getResponsiveHeight(
+                                                  0.05,
                                                   context), // Responsive font size
                                               fontWeight: FontWeight.w500,
                                               color: Color(0xff41627E)),
@@ -293,7 +324,7 @@ class LeagueScreen extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Lottie.asset(
-                                'lib/Assets/images/animation_llw7fh94.json',
+                                'lib/Assets/Images/animation_llw7fh94.json',
                                 width: getResponsiveWidth(
                                     0.4, context), // Responsive width
                               ),

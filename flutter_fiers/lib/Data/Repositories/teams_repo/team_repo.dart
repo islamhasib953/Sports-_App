@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../../models/tems_model/tems_model.dart';
-
 class TeamsScorer {
   static const String _apiKey =
       '96dcd54337dd88e5c710d0afbdafaf7f08e390184032cf6b60baf041d7733994';

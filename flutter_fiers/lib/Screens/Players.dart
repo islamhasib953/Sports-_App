@@ -6,7 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class Players extends StatelessWidget {
-  Players({super.key});
+  final int id;
+  Players({super.key, required this.id});
   final TextEditingController _searchController = TextEditingController();
 
   double getResponsiveHeight(double percentage, BuildContext context) {
@@ -66,7 +67,7 @@ class Players extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<GetPlayersCubit>().getPlayers();
+    context.read<GetPlayersCubit>().getPlayers(id);
 
     return OrientationBuilder(
       builder: (context, orientation) {
@@ -152,113 +153,110 @@ class Players extends StatelessWidget {
                           child: CircularProgressIndicator(),
                         );
                       } else if (state is GetPlayersSuccess) {
-                        final List<dynamic> filteredPlayers =
-                            state.response.result.where((player) {
-                          final playerName = player.playerName.toLowerCase();
-                          final searchQuery =
-                              _searchController.text.toLowerCase();
-                          return playerName.contains(searchQuery);
-                        }).toList();
-                        return Column(
-                          children: [
-                            for (int i = 0;
-                                i < state.response.result.length;
-                                i++)
-                              GestureDetector(
-                                onTap: () {
-                                  _showPlayerDetailsDialog(
-                                      context, state.response.result[i]);
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.all(getResponsiveWidth(
-                                      0.025, context)), // Responsive padding
-                                  child: Container(
-                                    width: getResponsiveWidth(
-                                        0.9, context), // Responsive width
-                                    height: getResponsiveHeight(
-                                        0.2, context), // Responsive height
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(
-                                          getResponsiveWidth(0.3,
-                                              context)), // Responsive radius
-                                      color:
-                                          Color.fromRGBO(229, 236, 242, 0.70),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(
-                                          getResponsiveWidth(0.025,
-                                              context)), // Responsive padding
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          CircleAvatar(
-                                            radius: getResponsiveWidth(0.1,
-                                                context), // Responsive radius
-                                            backgroundImage: NetworkImage(
-                                              state.response.result[i]
-                                                      .playerImage ??
-                                                  "https://jetpunk.b-cdn.net/img/user-photo-library/d8/d8f21957be-235.png",
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: getResponsiveWidth(0.02,
-                                                context), // Responsive spacing
-                                          ),
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                state.response.result[i]
-                                                        .playerName ??
-                                                    "Unknown",
-                                                style: GoogleFonts.robotoSlab(
-                                                    fontSize: getResponsiveHeight(
-                                                        0.02,
-                                                        context), // Responsive font size
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Color(0xff41627E)),
-                                                softWrap: true,
-                                              ),
-                                              Text(
-                                                'Position: ${state.response.result[i].playerType ?? "Unknown"}',
-                                                style: GoogleFonts.robotoSlab(
-                                                    fontSize: getResponsiveHeight(
-                                                        0.02,
-                                                        context), // Responsive font size
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Color(0xff41627E)),
-                                                softWrap: true,
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                          ],
-                        );
+                        return Text(state.response.result[0].playerGoals);
+                        //   final List<dynamic> filteredPlayers =
+                        //       state.response.result.where((player) {
+                        //     final playerName = player.playerName.toLowerCase();
+                        //     final searchQuery =
+                        //         _searchController.text.toLowerCase();
+                        //     return playerName.contains(searchQuery);
+                        //   }).toList();
+                        //   return Column(
+                        //     children: [
+                        //       for (int i = 0;
+                        //           i < state.response.result.length;
+                        //           i++)
+                        //         GestureDetector(
+                        //           onTap: () {
+                        //             _showPlayerDetailsDialog(
+                        //                 context, state.response.result[i]);
+                        //           },
+                        //           child: Padding(
+                        //             padding: EdgeInsets.all(getResponsiveWidth(
+                        //                 0.025, context)), // Responsive padding
+                        //             child: Container(
+                        //               width: getResponsiveWidth(
+                        //                   0.9, context), // Responsive width
+                        //               height: getResponsiveHeight(
+                        //                   0.2, context), // Responsive height
+                        //               decoration: BoxDecoration(
+                        //                 borderRadius: BorderRadius.circular(
+                        //                     getResponsiveWidth(0.3,
+                        //                         context)), // Responsive radius
+                        //                 color:
+                        //                     Color.fromRGBO(229, 236, 242, 0.70),
+                        //               ),
+                        //               child: Padding(
+                        //                 padding: EdgeInsets.all(
+                        //                     getResponsiveWidth(0.025,
+                        //                         context)), // Responsive padding
+                        //                 child: Row(
+                        //                   mainAxisAlignment:
+                        //                       MainAxisAlignment.start,
+                        //                   children: [
+                        //                     CircleAvatar(
+                        //                       radius: getResponsiveWidth(0.1,
+                        //                           context), // Responsive radius
+                        //                       backgroundImage: NetworkImage(
+                        //                         state.response.result[i]
+                        //                                 .playerImage ??
+                        //                             "https://jetpunk.b-cdn.net/img/user-photo-library/d8/d8f21957be-235.png",
+                        //                       ),
+                        //                     ),
+                        //                     SizedBox(
+                        //                       width: getResponsiveWidth(0.02,
+                        //                           context), // Responsive spacing
+                        //                     ),
+                        //                     Column(
+                        //                       mainAxisAlignment:
+                        //                           MainAxisAlignment.center,
+                        //                       children: [
+                        //                         Text(
+                        //                           state.response.result[i]
+                        //                                   .playerName ??
+                        //                               "Unknown",
+                        //                           style: GoogleFonts.robotoSlab(
+                        //                               fontSize: getResponsiveHeight(
+                        //                                   0.02,
+                        //                                   context), // Responsive font size
+                        //                               fontWeight: FontWeight.w600,
+                        //                               color: Color(0xff41627E)),
+                        //                           softWrap: true,
+                        //                         ),
+                        //                         Text(
+                        //                           'Position: ${state.response.result[i].playerType ?? "Unknown"}',
+                        //                           style: GoogleFonts.robotoSlab(
+                        //                               fontSize: getResponsiveHeight(
+                        //                                   0.02,
+                        //                                   context), // Responsive font size
+                        //                               fontWeight: FontWeight.w600,
+                        //                               color: Color(0xff41627E)),
+                        //                           softWrap: true,
+                        //                         ),
+                        //                       ],
+                        //                     ),
+                        //                   ],
+                        //                 ),
+                        //               ),
+                        //             ),
+                        //           ),
+                        //         ),
+                        //     ],
+                        //   );
                       } else {
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Expanded(
-                              child: Lottie.asset(
-                                'lib/Assets/images/animation_llw7fh94.json',
-                                width: getResponsiveWidth(
-                                    0.4, context), // Responsive width
-                              ),
+                            Lottie.asset(
+                              'lib/Assets/Images/animation_llw7fh94.json',
+                              width: getResponsiveWidth(
+                                  0.4, context), // Responsive width
                             ),
-                            Expanded(
-                              child: Text(
-                                'An error has occurred',
-                                style: GoogleFonts.inter(
-                                    color: Color.fromRGBO(65, 98, 126, 1),
-                                    fontWeight: FontWeight.w600),
-                              ),
+                            Text(
+                              'An error has occurred',
+                              style: GoogleFonts.inter(
+                                  color: Color.fromRGBO(65, 98, 126, 1),
+                                  fontWeight: FontWeight.w600),
                             ),
                           ],
                         );
@@ -445,7 +443,7 @@ class Players extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Lottie.asset(
-                                'lib/Assets/images/animation_llw7fh94.json',
+                                'lib/Assets/Images/animation_llw7fh94.json',
                                 width: getResponsiveWidth(
                                     0.4, context), // Responsive width
                               ),

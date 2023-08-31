@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fiers/Data/Cubits/cubit/countries_cubit.dart';
+import 'package:flutter_fiers/Screens/league.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CountriesScreen extends StatelessWidget {
@@ -77,88 +78,100 @@ class CountriesScreen extends StatelessWidget {
                             ),
                             itemCount: state.response.result.length,
                             itemBuilder: (context, index) {
-                              return Container(
-                                alignment: Alignment.center,
-                                margin: EdgeInsets.all(
-                                    getResponsiveWidth(0.02, context)),
-                                width: (orientation == Orientation.portrait)
-                                    ? getResponsiveWidth(0.3, context)
-                                    : getResponsiveWidth(0.16, context),
-                                height: (orientation == Orientation.portrait)
-                                    ? getResponsiveHeight(0.3, context)
-                                    : getResponsiveHeight(0.5, context),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(
-                                      getResponsiveWidth(0.15, context)),
-                                  color: Color(0xffe5ecf2),
-                                ),
-                                child: Stack(children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
+                              return InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute<void>(
+                                        builder: (BuildContext context) =>
+                                            LeagueScreen(idleague: state.response.result[index].countryKey,),
+                                      ));
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  margin: EdgeInsets.all(
+                                      getResponsiveWidth(0.02, context)),
+                                  width: (orientation == Orientation.portrait)
+                                      ? getResponsiveWidth(0.3, context)
+                                      : getResponsiveWidth(0.16, context),
+                                  height: (orientation == Orientation.portrait)
+                                      ? getResponsiveHeight(0.3, context)
+                                      : getResponsiveHeight(0.5, context),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                        getResponsiveWidth(0.15, context)),
+                                    color: Color(0xffe5ecf2),
+                                  ),
+                                  child: Stack(children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                            height: (orientation ==
+                                                    Orientation.portrait)
+                                                ? getResponsiveHeight(
+                                                    0.03, context)
+                                                : getResponsiveHeight(
+                                                    0.05, context)),
+                                        Container(
+                                          width: (orientation ==
+                                                  Orientation.portrait)
+                                              ? getResponsiveWidth(
+                                                  0.208, context)
+                                              : getResponsiveWidth(
+                                                  0.1, context),
                                           height: (orientation ==
                                                   Orientation.portrait)
                                               ? getResponsiveHeight(
-                                                  0.03, context)
+                                                  0.09375, context)
                                               : getResponsiveHeight(
-                                                  0.05, context)),
-                                      Container(
-                                        width: (orientation ==
-                                                Orientation.portrait)
-                                            ? getResponsiveWidth(0.208, context)
-                                            : getResponsiveWidth(0.1, context),
-                                        height: (orientation ==
-                                                Orientation.portrait)
-                                            ? getResponsiveHeight(
-                                                0.09375, context)
-                                            : getResponsiveHeight(
-                                                0.19, context),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                              (orientation ==
+                                                  0.19, context),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                                (orientation ==
+                                                        Orientation.portrait)
+                                                    ? getResponsiveWidth(
+                                                        0.208 / 2, context)
+                                                    : getResponsiveHeight(
+                                                        0.208 / 2, context)),
+                                            image: DecorationImage(
+                                              image: NetworkImage(state
+                                                      .response
+                                                      .result[index]
+                                                      .countryLogo ??
+                                                  ''),
+                                              fit: (orientation ==
                                                       Orientation.portrait)
-                                                  ? getResponsiveWidth(
-                                                      0.208 / 2, context)
-                                                  : getResponsiveHeight(
-                                                      0.208 / 2, context)),
-                                          image: DecorationImage(
-                                            image: NetworkImage(state
-                                                    .response
-                                                    .result[index]
-                                                    .countryLogo ??
-                                                ''),
-                                            fit: (orientation ==
-                                                    Orientation.portrait)
-                                                ? BoxFit.fitHeight
-                                                : BoxFit.cover,
+                                                  ? BoxFit.fitHeight
+                                                  : BoxFit.cover,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(
-                                          height: getResponsiveHeight(
-                                              0.02, context)),
-                                      Container(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          state.response.result[index]
-                                                  .countryName ??
-                                              '',
-                                          style: TextStyle(
-                                            fontSize: (orientation ==
-                                                    Orientation.portrait)
-                                                ? 20
-                                                : 18,
-                                            color: Color(0xff41627E),
-                                            fontWeight: FontWeight.w400,
+                                        SizedBox(
+                                            height: getResponsiveHeight(
+                                                0.02, context)),
+                                        Container(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            state.response.result[index]
+                                                    .countryName ??
+                                                '',
+                                            style: TextStyle(
+                                              fontSize: (orientation ==
+                                                      Orientation.portrait)
+                                                  ? 20
+                                                  : 18,
+                                              color: Color(0xff41627E),
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                            textAlign: TextAlign.center,
                                           ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ]),
+                                        )
+                                      ],
+                                    ),
+                                  ]),
+                                ),
                               );
                             },
                           );

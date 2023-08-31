@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_fiers/Screens/contaniers_onboarding.dart';
+import 'package:flutter_fiers/Screens/countries.dart';
+import 'package:flutter_fiers/Screens/home.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -84,7 +86,10 @@ class _PageSwapperWidgetState extends State<PageSwapperWidget> {
                             GoogleFonts.dancingScript(color: Color(0xff659EC7)),
                       ),
                       onPressed: () {
-                        // Handle skip button press
+                         Navigator.pushReplacement(
+         context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+       );
                       },
                     ),
                   ),
