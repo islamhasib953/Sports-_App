@@ -45,6 +45,8 @@ dependencies:
 
 
 
+  lottie: ^2.6.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -68,13 +70,6 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-    - lib/Assets/Images/Vector 1.png
-    - lib/Assets/Images/Vector 2.png
-    - lib/Assets/Images/Vector 3.png
-    - lib/Assets/Images/Vector 4.png
-
-
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
