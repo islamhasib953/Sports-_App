@@ -32,31 +32,33 @@ class _splashscreenState extends State<splashscreen> with SingleTickerProviderSt
     final double splashscreenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.white,
-                  Colors.white,
-                  Color.fromRGBO(101, 158, 199, 1),
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.white,
+                    Colors.white,
+                    Color.fromRGBO(101, 158, 199, 1),
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
               ),
             ),
-          ),
-           Center(
-            child: ScaleTransition(
-              scale: _logocontroller,
-              child: Image.asset(
-                "lib/Assets/images/Remove background project (6).png",
-                height: splashscreenHeight * 0.2, // Responsive image height
+             Center(
+              child: ScaleTransition(
+                scale: _logocontroller,
+                child: Image.asset(
+                  "lib/Assets/images/Remove background project (6).png",
+                  height: splashscreenHeight * 0.2, // Responsive image height
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

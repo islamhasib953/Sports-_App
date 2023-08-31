@@ -69,8 +69,7 @@ class HomeScreen extends StatelessWidget {
             getResponsiveWidth(0.03, context)), // Responsive padding
         child: Container(
           width: getResponsiveWidth(widthRatio, context), // Responsive width
-          height:
-              getResponsiveHeight(heightRatio, context), // Responsive height
+          height: getResponsiveHeight(heightRatio, context), // Responsive height
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(getResponsiveWidth(
                 widthRatio / 2, context)), // Responsive radius
@@ -81,18 +80,15 @@ class HomeScreen extends StatelessWidget {
             children: [
               SvgPicture.asset(
                 images[index],
-                height:
-                    getResponsiveHeight(0.14, context), // Responsive SVG height
+                height: getResponsiveHeight(0.14, context), // Responsive SVG height
               ),
               SizedBox(
-                  height:
-                      getResponsiveHeight(0.02, context)), // Responsive spacing
+                  height: getResponsiveHeight(0.02, context)), // Responsive spacing
               Text(
                 names[index],
                 style: GoogleFonts.robotoSlab(
                     color: Color.fromRGBO(65, 98, 126, 1),
-                    fontSize: getResponsiveHeight(
-                        0.03, context), // Responsive font size
+                    fontSize: getResponsiveHeight( 0.03, context), // Responsive font size
                     fontWeight: FontWeight.w600),
               ),
             ],
@@ -105,58 +101,58 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.white,
-                  Colors.white,
-                  Color.fromRGBO(101, 158, 199, 1),
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.white,
+                    Colors.white,
+                    Color.fromRGBO(101, 158, 199, 1),
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
               ),
             ),
-          ),
-          Column(
-            children: [
-              Container(
-                width: double.infinity,
-                height: getResponsiveHeight(
-                    0.1, context), // Responsive app bar height
-                decoration: BoxDecoration(
-                  borderRadius:
-                      BorderRadius.vertical(bottom: Radius.circular(15)),
-                  color: Color.fromRGBO(101, 158, 199, 1),
-                ),
-                child: Center(
-                  child: Text(
-                    "Select your favorite sport",
-                    style: GoogleFonts.robotoSlab(
-                        fontSize: getResponsiveHeight(
-                            0.03, context), // Responsive font size
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600),
+            Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: getResponsiveHeight( 0.1, context ), // Responsive app bar height
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        BorderRadius.vertical(bottom: Radius.circular(15)),
+                        color: Color.fromRGBO(101, 158, 199, 1),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Select your favorite sport",
+                      style: GoogleFonts.robotoSlab(
+                          fontSize: getResponsiveHeight(0.03, context), // Responsive font size
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: getResponsiveHeight(0.02, context)),
-              Expanded(
-                child: OrientationBuilder(
-                  builder: (context, orientation) {
-                    if (orientation == Orientation.portrait) {
-                      return buildPortraitGridView(context);
-                    } else {
-                      return buildLandscapeGridView(context);
-                    }
-                  },
+                SizedBox(height: getResponsiveHeight(0.02, context)),
+                Expanded(
+                  child: OrientationBuilder(
+                    builder: (context, orientation) {
+                      if (orientation == Orientation.portrait) {
+                        return buildPortraitGridView(context);
+                      } else {
+                        return buildLandscapeGridView(context);
+                      }
+                    },
+                  ),
                 ),
-              ),
-            ],
-          )
-        ],
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
