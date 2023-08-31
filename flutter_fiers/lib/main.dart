@@ -9,6 +9,7 @@ import 'package:flutter_fiers/Screens/countries.dart';
 import 'package:flutter_fiers/Screens/home.dart';
 import 'package:flutter_fiers/Screens/onboarding_screen.dart';
 import 'package:flutter_fiers/Screens/splashscreen.dart';
+import 'package:flutter_fiers/Screens/teams.dart';
 import 'Screens/league.dart';
 void main() {
   runApp(const MyApp());
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
               ColorScheme.fromSeed(seedColor: Color.fromRGBO(101, 158, 199, 1)),
           useMaterial3: true,
         ),
-        home: Players(),
+        home: TeamsScoresScreen(id:17,name: "",),
       ),
     );
   }

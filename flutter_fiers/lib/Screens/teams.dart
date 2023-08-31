@@ -11,8 +11,8 @@ final TextEditingController search = TextEditingController();
 class TeamsScoresScreen extends StatefulWidget {
   final int id;
   final String? name;
-
-  const TeamsScoresScreen({super.key, required this.id, required this.name});
+  const TeamsScoresScreen(
+      {super.key, required this.id, required this.name});
 
   @override
   State<TeamsScoresScreen> createState() => _TeamsScoresScreen();
