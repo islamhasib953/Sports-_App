@@ -6,6 +6,10 @@ import 'package:flutter_fiers/Screens/home.dart';
 import 'package:flutter_fiers/Screens/league.dart';
 import 'package:flutter_fiers/Screens/splashscreen.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_fiers/Data/Cubits/GetPlayers/cubit/get_players_cubit.dart';
+import 'package:flutter_fiers/Screens/Players.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -16,13 +20,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (BuildContext context) => LeaguesCubit(),
-        ),
-      ],
-      child:  MaterialApp(
+
         title: 'Flutter Demo',
         theme: ThemeData(
           // This is the theme of your application.
@@ -40,10 +38,7 @@ class MyApp extends StatelessWidget {
           //
           // This works for code too, not just values: Most code changes can be
           // tested with just a hot reload.
-          colorScheme: ColorScheme.fromSeed(seedColor: Color.fromRGBO(229, 236, 242, 0.34)),
-          useMaterial3: true,
-        ),
-        home:  HomeScreen(),
+
       ),
     );
   }
